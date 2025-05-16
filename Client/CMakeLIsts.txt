@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.10)
+project(MMORPGClient)
+
+set(CMAKE_CXX_STANDARD 17)
+
+# Auto-detect Boost from environment or system
+find_package(Boost REQUIRED)
+
+# Set include directories
+include_directories(
+    ${Boost_INCLUDE_DIRS}
+)
+
+# Define the executable
+add_executable(MMORPGClient client.cpp)
+
+# Link system libraries required by Boost.Asio
+target_link_libraries(MMORPGClient
+    ws2_32.lib  # Required for Windows socket support
+)
